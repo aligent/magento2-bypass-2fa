@@ -33,7 +33,7 @@ class Bypass2FAAdmin
      * Otherwise, return the original result
      *
      * @param TfaSession $subject
-     * @param $result
+     * @param bool $result
      * @return bool
      */
     public function afterIsGranted(
