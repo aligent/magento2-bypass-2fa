@@ -38,8 +38,8 @@ class Bypass2FAAdmin
      */
     public function afterIsGranted(
         TfaSession $subject,
-        $result
+        bool $result
     ): bool {
-        return $this->data->getBypassAdmin() ? true : $result;
+        return $this->data->getBypassAdmin() ?: $result;
     }
 }
