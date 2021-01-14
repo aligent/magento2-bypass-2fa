@@ -1,0 +1,22 @@
+{
+  "name": "aligent/bypass2fa",
+  "version": "1.0.0",
+  "description": "Magento 2 module for bypassing 2-factor authentication in local development environments.",
+  "type": "magento2-module",
+  "require": {
+    "php": "^7.3",
+    "magento/framework": "*",
+    "magento/module-two-factor-auth": "1.1.*"
+  },
+  "license": [
+    "Massachusetts Institute of Technology License (MITL)"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Aligent\\Bypass2FA\\": ""
+    }
+  }
+}
