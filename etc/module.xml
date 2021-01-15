@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+  ~ @author Aligent Consulting Team
+  ~ @copyright Copyright (c) 2021 Aligent Consulting. (http://www.aligent.com.au)
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Aligent_Bypass2FA">
+        <sequence>
+            <module name="Magento_TwoFactorAuth"/>
+        </sequence>
+    </module>
+</config>
