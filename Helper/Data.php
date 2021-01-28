@@ -72,10 +72,10 @@ class Data
      * @param string $environmentVariable
      * @return bool
      */
-    protected function getEnvironmentVariable(string $environmentVariable): boolean
+    protected function getEnvironmentVariable(string $environmentVariable): bool
     {
         if (array_key_exists($environmentVariable, $_ENV)) {
-            return $_ENV($environmentVariable) == 1;
+            return $_ENV[$environmentVariable] == 1;
         }
         return false;
     }
