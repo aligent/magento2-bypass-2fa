@@ -69,6 +69,18 @@ class Data
     }
 
     /**
+     * @param string $environmentVariable
+     * @return bool
+     */
+    protected function getEnvironmentVariable(string $environmentVariable): bool
+    {
+        if (array_key_exists($environmentVariable, $_ENV)) {
+            return $_ENV[$environmentVariable] == 1;
+        }
+        return false;
+    }
+
+    /**
      * Checks if 2FA authentication can be bypassed based on environment and hostname
      * @param string $environmentVariable
      * @return bool
@@ -77,7 +89,9 @@ class Data
     {
         try {
             // check if bypass mode is enabled for the environment
-            if ($this->deploymentConfig->get($environmentVariable) !== true) {
+            // check both deploymentConfig (ie env.php) and environment variables (for Magento Cloud)
+            if ($this->deploymentConfig->get($environmentVariable) !== true &&
+                $this->getEnvironmentVariable($environmentVariable) !== true) {
                 return false;
             }
             return $this->validateCurrentHostname();
