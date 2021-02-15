@@ -9,6 +9,6 @@
         <plugin name="bypassTwoFactorAuthAdmin" type="Aligent\Bypass2FA\Plugin\Bypass2FAAdmin"/>
     </type>
     <type name="Magento\TwoFactorAuth\Model\AdminAccessTokenService">
-        <plugin name="bypassTwoFactorAuthForApiTokenGeneration" type="Aligent\Bypass2FA\Plugin\Bypass2FAWebAPI"/>
+        <plugin name="bypassTwoFactorAuthForApiTokenGeneration" type="Aligent\Bypass2FA\Plugin\Bypass2FAWebApi"/>
     </type>
 </config>
