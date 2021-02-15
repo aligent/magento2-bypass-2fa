@@ -4,7 +4,8 @@ This module is designed to allow developers to bypass the need for 2-factor auth
 ### Configuration
 The bypassing of 2FA is made possible for both admin access and the generation of admin tokens via API.
 Both methods of access are controlled by setting variables in the environment's `app/etc/env.php` file:
- - `BYPASS_2FA_ADMIN` when set to `true`, this variable allows bypassing of 2FA for admin actions.
+ - `BYPASS_2FA_ADMIN` when set to `true` (must be a boolean, setting truthy or falsy values like 1, 'true' is not
+ supported), this variable allows bypassing of 2FA for admin actions.
  - `BYPASS_2FA_API` when set to `true`, this variable allows bypassing of 2FA for admin token generation.
 
 Additionally, there is an added security measure, to prevent 2FA being bypassed accidentally (or intentionally) in production environments.
