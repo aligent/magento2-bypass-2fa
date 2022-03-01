@@ -1,8 +1,9 @@
 <?php
 /*
  * @author Aligent Consulting Team
- * @copyright Copyright (c) 2021 Aligent Consulting. (http://www.aligent.com.au)
+ * @copyright Copyright (c) 2022 Aligent Consulting. (http://www.aligent.com.au)
  */
+declare(strict_types=1);
 
 namespace Aligent\Bypass2FA\Plugin;
 
@@ -14,7 +15,7 @@ class Bypass2FAAdmin
     /**
      * @var Data
      */
-    protected Data $data;
+    private Data $data;
 
     /**
      * BypassTwoFactorAuth constructor.
