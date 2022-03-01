@@ -14,7 +14,7 @@ class Bypass2FAAdmin
     /**
      * @var Data
      */
-    protected Data $data;
+    protected $data;
 
     /**
      * BypassTwoFactorAuth constructor.
