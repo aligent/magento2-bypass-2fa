@@ -19,11 +19,11 @@ class Bypass2FAWebApi
     /**
      * @var Data
      */
-    protected Data $data;
+    protected $data;
     /**
      * @var AdminTokenServiceInterface
      */
-    protected AdminTokenServiceInterface $adminTokenService;
+    protected $adminTokenService;
 
     public function __construct(
         Data $data,
