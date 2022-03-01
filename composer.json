@@ -1,6 +1,5 @@
 {
   "name": "aligent/bypass2fa",
-  "version": "1.0.0",
   "description": "Magento 2 module for bypassing 2-factor authentication in local development environments.",
   "type": "magento2-module",
   "require": {
