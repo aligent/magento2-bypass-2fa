@@ -1,8 +1,9 @@
 <?php
 /*
  * @author Aligent Consulting Team
- * @copyright Copyright (c) 2021 Aligent Consulting. (http://www.aligent.com.au)
+ * @copyright Copyright (c) 2022 Aligent Consulting. (http://www.aligent.com.au)
  */
+declare(strict_types=1);
 
 namespace Aligent\Bypass2FA\Plugin;
 
@@ -16,14 +17,9 @@ use Magento\TwoFactorAuth\Model\AdminAccessTokenService;
 
 class Bypass2FAWebApi
 {
-    /**
-     * @var Data
-     */
-    protected Data $data;
-    /**
-     * @var AdminTokenServiceInterface
-     */
-    protected AdminTokenServiceInterface $adminTokenService;
+
+    private Data $data;
+    private AdminTokenServiceInterface $adminTokenService;
 
     public function __construct(
         Data $data,

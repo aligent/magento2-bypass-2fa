@@ -1,8 +1,9 @@
 <?php
 /*
  * @author Aligent Consulting Team
- * @copyright Copyright (c) 2021 Aligent Consulting. (http://www.aligent.com.au)
+ * @copyright Copyright (c) 2022 Aligent Consulting. (http://www.aligent.com.au)
  */
+declare(strict_types=1);
 
 namespace Aligent\Bypass2FA\Helper;
 
@@ -16,18 +17,9 @@ class Data
     public const ENV_VARIABLE_BYPASS_2FA_ADMIN = 'BYPASS_2FA_ADMIN';
     public const ENV_VARIABLE_BYPASS_2FA_API = 'BYPASS_2FA_API';
 
-    /**
-     * @var DeploymentConfig
-     */
-    protected $deploymentConfig;
-    /**
-     * @var ScopeConfigInterface
-     */
-    protected $scopeConfigInterface;
-    /**
-     * @var UrlInterface
-     */
-    protected $url;
+    private DeploymentConfig $deploymentConfig;
+    private ScopeConfigInterface $scopeConfigInterface;
+    private UrlInterface $url;
 
     public function __construct(
         DeploymentConfig $deploymentConfig,
@@ -59,7 +51,7 @@ class Data
      * Returns array of (partial) hostnames that can be bypassed
      * @return String[]
      */
-    protected function getAllowedBypassHostnames(): array
+    private function getAllowedBypassHostnames(): array
     {
         $allowedHostnames = $this->scopeConfigInterface->getValue(self::XML_PATH_ALLOWED_BYPASS_HOSTNAMES);
         if (empty($allowedHostnames)) {
@@ -72,7 +64,7 @@ class Data
      * @param string $environmentVariable
      * @return bool
      */
-    protected function getEnvironmentVariable(string $environmentVariable): bool
+    private function getEnvironmentVariable(string $environmentVariable): bool
     {
         if (array_key_exists($environmentVariable, $_ENV)) {
             return $_ENV[$environmentVariable] == 1;
@@ -85,7 +77,7 @@ class Data
      * @param string $environmentVariable
      * @return bool
      */
-    protected function isBypassAllowed(string $environmentVariable): bool
+    private function isBypassAllowed(string $environmentVariable): bool
     {
         try {
             // check if bypass mode is enabled for the environment
@@ -100,7 +92,7 @@ class Data
         }
     }
 
-    protected function validateCurrentHostname(): bool
+    private function validateCurrentHostname(): bool
     {
         // check that current base url is configured as an allowed hostname
         $baseUrl = $this->url->getBaseUrl();
