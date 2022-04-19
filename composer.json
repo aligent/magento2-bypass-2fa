@@ -8,7 +8,7 @@
     "magento/module-two-factor-auth": "1.1.*"
   },
   "license": [
-    "Massachusetts Institute of Technology License (MITL)"
+    "MIT License"
   ],
   "autoload": {
     "files": [
