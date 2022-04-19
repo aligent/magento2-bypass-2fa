@@ -8,7 +8,7 @@
     "magento/module-two-factor-auth": "1.1.*"
   },
   "license": [
-    "MIT License"
+    "MIT"
   ],
   "autoload": {
     "files": [
