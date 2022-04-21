@@ -5,6 +5,7 @@ jobs:
   code-standards:
     steps:
       - name: Code Standards Test
+        runs-on: ubuntu-latest
         uses: docker://aligent/code-standards-pipe-php:7.4-experimental
         env:
           STANDARDS: "Magento2"
