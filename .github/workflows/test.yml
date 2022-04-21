@@ -5,6 +5,8 @@ jobs:
   code-standards:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Code Standards Test
         uses: docker://aligent/code-standards-pipe-php:7.4-experimental
         env:
