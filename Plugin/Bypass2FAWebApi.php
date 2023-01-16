@@ -60,7 +60,7 @@ class Bypass2FAWebApi
         $username,
         $password
     ): string {
-        return $this->data->isAllowedBypassAPiByUsername($username) || $this->data->getBypassAPI() ?
+        return $this->data->isAllowedBypassAPIByUsername($username) || $this->data->getBypassAPI() ?
             $this->adminTokenService->createAdminAccessToken($username, $password) :
             $proceed($username, $password);
     }

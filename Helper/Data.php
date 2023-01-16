@@ -76,7 +76,7 @@ class Data
      * @param string $userName
      * @return bool
      */
-    public function isAllowedBypassAPiByUsername(string $userName): bool
+    public function isAllowedBypassAPIByUsername(string $userName): bool
     {
         $allowedUsernames = $this->getAllowedBypassUsernames();
         return in_array($userName, $allowedUsernames);
