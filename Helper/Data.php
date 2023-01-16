@@ -14,13 +14,32 @@ use Magento\Framework\UrlInterface;
 class Data
 {
     public const XML_PATH_ALLOWED_BYPASS_HOSTNAMES = 'bypass_2fa/settings/allowed_hostnames';
+    public const XML_PATH_ALLOWED_BYPASS_USERNAMES = 'bypass_2fa/settings/allowed_usernames';
     public const ENV_VARIABLE_BYPASS_2FA_ADMIN = 'BYPASS_2FA_ADMIN';
     public const ENV_VARIABLE_BYPASS_2FA_API = 'BYPASS_2FA_API';
 
+    /**
+     * @var DeploymentConfig
+     */
     private DeploymentConfig $deploymentConfig;
+
+    /**
+     * @var ScopeConfigInterface
+     */
     private ScopeConfigInterface $scopeConfigInterface;
+
+    /**
+     * @var UrlInterface
+     */
     private UrlInterface $url;
 
+    /**
+     * Constructor
+     *
+     * @param DeploymentConfig $deploymentConfig
+     * @param ScopeConfigInterface $scopeConfigInterface
+     * @param UrlInterface $url
+     */
     public function __construct(
         DeploymentConfig $deploymentConfig,
         ScopeConfigInterface $scopeConfigInterface,
@@ -32,7 +51,9 @@ class Data
     }
 
     /**
-     * @return bool Indicates if 2FA can be bypassed for admin access
+     * Indicates if 2FA can be bypassed for admin access
+     *
+     * @return bool
      */
     public function getBypassAdmin(): bool
     {
@@ -40,7 +61,9 @@ class Data
     }
 
     /**
-     * @return bool Indicates if 2FA can be bypassed for API token generation
+     * Indicates if 2FA can be bypassed for API token generation
+     *
+     * @return bool
      */
     public function getBypassAPI(): bool
     {
@@ -48,7 +71,34 @@ class Data
     }
 
     /**
+     * Validate the usernames that can be bypassed
+     *
+     * @param string $userName
+     * @return bool
+     */
+    public function isAllowedBypassAPIByUsername(string $userName): bool
+    {
+        $allowedUsernames = $this->getAllowedBypassUsernames();
+        return in_array($userName, $allowedUsernames);
+    }
+
+    /**
+     * Returns array of admin usernames that can be bypass
+     *
+     * @return String[]
+     */
+    private function getAllowedBypassUsernames(): array
+    {
+        $allowedUsernames = $this->scopeConfigInterface->getValue(self::XML_PATH_ALLOWED_BYPASS_USERNAMES);
+        if (empty($allowedUsernames)) {
+            $allowedUsernames = [];
+        }
+        return $allowedUsernames;
+    }
+
+    /**
      * Returns array of (partial) hostnames that can be bypassed
+     *
      * @return String[]
      */
     private function getAllowedBypassHostnames(): array
@@ -61,19 +111,22 @@ class Data
     }
 
     /**
+     * Get Environment Variable
+     *
      * @param string $environmentVariable
      * @return bool
      */
     private function getEnvironmentVariable(string $environmentVariable): bool
     {
-        if (array_key_exists($environmentVariable, $_ENV)) {
-            return $_ENV[$environmentVariable] == 1;
+        if (array_key_exists($environmentVariable, $_ENV)) { // phpcs:ignore
+            return $_ENV[$environmentVariable] == 1; // phpcs:ignore
         }
         return false;
     }
 
     /**
      * Checks if 2FA authentication can be bypassed based on environment and hostname
+     *
      * @param string $environmentVariable
      * @return bool
      */
@@ -92,6 +145,11 @@ class Data
         }
     }
 
+    /**
+     * Validate current hostname with allowed list
+     *
+     * @return bool
+     */
     private function validateCurrentHostname(): bool
     {
         // check that current base url is configured as an allowed hostname

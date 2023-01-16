@@ -18,9 +18,22 @@ use Magento\TwoFactorAuth\Model\AdminAccessTokenService;
 class Bypass2FAWebApi
 {
 
+    /**
+     * @var Data
+     */
     private Data $data;
+
+    /**
+     * @var AdminTokenServiceInterface
+     */
     private AdminTokenServiceInterface $adminTokenService;
 
+    /**
+     * Constructor
+     *
+     * @param Data $data
+     * @param AdminTokenServiceInterface $adminTokenService
+     */
     public function __construct(
         Data $data,
         AdminTokenServiceInterface $adminTokenService
@@ -47,7 +60,7 @@ class Bypass2FAWebApi
         $username,
         $password
     ): string {
-        return $this->data->getBypassAPI() ?
+        return $this->data->isAllowedBypassAPIByUsername($username) || $this->data->getBypassAPI() ?
             $this->adminTokenService->createAdminAccessToken($username, $password) :
             $proceed($username, $password);
     }
