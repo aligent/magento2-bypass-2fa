@@ -10,7 +10,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Code Standards Test
-        uses: docker://aligent/code-standards-pipe-php:7.4-experimental
+        uses: docker://ghcr.io/aligent/code-standards-pipe-php:8.2
         env:
           STANDARDS: "Magento2"
           SKIP_DEPENDENCIES: "true"
